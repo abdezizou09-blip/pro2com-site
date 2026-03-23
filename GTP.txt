@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro2Com - Solutions professionnelles</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;color:#222;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+section{padding:80px 20px;}
+header{position:fixed;top:0;left:0;width:100%;background:linear-gradient(90deg,#0D6EFD,#0A58CA);color:#fff;z-index:1000;box-shadow:0 4px 6px rgba(0,0,0,0.1);}
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;}
+.logo img{height:50px;}
+.menu{display:flex;gap:25px;}
+.menu a{font-weight:500;transition:0.3s;}
+.menu a:hover{color:#ffe600;}
+.menu-toggle{display:none;cursor:pointer;font-size:1.8em;}
+.hero{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;text-align:center;background:#f0f8ff;position:relative;}
+.hero h1{font-size:3em;margin-bottom:20px;animation:fadeInDown 1s ease;}
+.hero p{font-size:1.2em;margin-bottom:30px;max-width:600px;animation:fadeIn 2s ease;}
+.btn{padding:14px 35px;background:#0D6EFD;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:0.3s;}
+.btn:hover{background:#0956b3;}
+@keyframes fadeInDown{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
+.services{background:#f8f9fa;}
+.services-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.service-item{background:#fff;padding:25px;border-radius:15px;box-shadow:0 6px 15px rgba(0,0,0,0.1);text-align:center;cursor:pointer;transition:0.3s;position:relative;}
+.service-item:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.15);}
+.service-item img{height:150px;margin-bottom:15px;border-radius:10px;}
+.popup{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);width:90%;max-width:400px;display:none;z-index:10;}
+.popup.active{display:block;}
+.popup h3{margin-bottom:15px;}
+.popup p{margin-bottom:15px;}
+.popup .close-btn{background:#dc3545;color:#fff;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;float:right;}
+.about{text-align:center;max-width:800px;margin:0 auto;}
+.about img{width:100%;border-radius:15px;margin-top:20px;}
+.contact form{max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
+.contact input, .contact textarea{padding:14px;border:1px solid #ccc;border-radius:8px;transition:0.3s;}
+.contact input:focus, .contact textarea:focus{border-color:#0D6EFD;outline:none;}
+footer{background:#0D6EFD;color:#fff;text-align:center;padding:25px 20px;}
+@media(max-width:768px){
+  .menu{display:none;flex-direction:column;background:#0A58CA;position:absolute;top:70px;right:0;width:200px;padding:20px;border-radius:0 0 10px 10px;}
+  .menu.show{display:flex;}
+  .menu-toggle{display:block;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><img src="https://i.ibb.co/8Yk0k9p/pro2com-logo.png" alt="Pro2Com Logo"></div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="#hero">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <h1>Solutions professionnelles innovantes</h1>
+  <p>Pro2Com accompagne votre entreprise avec des services adaptés et performants pour chaque projet.</p>
+  <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Nous contacter</button>
+</section>
+
+<section class="services" id="services">
+  <h2 style="text-align:center; margin-bottom:50px;">Nos Services</h2>
+  <div class="services-container">
+    <div class="service-item" onclick="openPopup('popup1')">
+      <img src="https://i.ibb.co/7WmF3sC/service1.png" alt="Consulting professionnel">
+      <h3>Consulting professionnel</h3>
+    </div>
+    <div class="service-item" onclick="openPopup('popup2')">
+      <img src="https://i.ibb.co/qC7Yk3p/service2.png" alt="Solutions digitales">
+      <h3>Solutions digitales</h3>
+    </div>
+    <div class="service-item" onclick="openPopup('popup3')">
+      <img src="https://i.ibb.co/Fh0cQ2Z/service3.png" alt="Formation & Support">
+      <h3>Formation & Support</h3>
+    </div>
+  </div>
+</section>
+
+<div class="popup" id="popup1">
+  <button class="close-btn" onclick="closePopup('popup1')">X</button>
+  <h3>Consulting professionnel</h3>
+  <p>Accompagnement personnalisé pour optimiser vos processus et améliorer la performance de votre entreprise.</p>
+  <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contacter pour ce service</button>
+</div>
+
+<div class="popup" id="popup2">
+  <button class="close-btn" onclick="closePopup('popup2')">X</button>
+  <h3>Solutions digitales</h3>
+  <p>Développement d’outils digitaux sur mesure pour automatiser et sécuriser vos activités professionnelles.</p>
+  <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contacter pour ce service</button>
+</div>
+
+<div class="popup" id="popup3">
+  <button class="close-btn" onclick="closePopup('popup3')">X</button>
+  <h3>Formation & Support</h3>
+  <p>Programmes de formation innovants pour vos équipes et assistance continue pour tous vos projets.</p>
+  <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contacter pour ce service</button>
+</div>
+
+<section class="about" id="about">
+  <h2>À propos de Pro2Com</h2>
+  <p>Pro2Com est votre partenaire de confiance pour des solutions professionnelles sur mesure. Notre expertise et notre engagement vous assurent des résultats concrets et mesurables.</p>
+  <img src="https://i.ibb.co/W2hZQ6P/about-ia.png" alt="Illustration IA Pro2Com">
+</section>
+
+<section class="contact" id="contact">
+  <h2 style="text-align:center; margin-bottom:40px;">Contactez-nous</h2>
+  <form action="#" method="post">
+    <input type="text" name="name" placeholder="Nom et Prénom" required>
+    <input type="email" name="email" placeholder="Adresse email" required>
+    <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+    <button type="submit" class="btn">Envoyer</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Pro2Com - Tous droits réservés</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
+function openPopup(id){document.getElementById(id).classList.add('active');}
+function closePopup(id){document.getElementById(id).classList.remove('active');}
+</script>
+
+</body>
+</html>
